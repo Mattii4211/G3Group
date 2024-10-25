@@ -10,16 +10,26 @@ const FormHandler =
     ACCOUNT_NUMBER_FIELD_NAME: 'account',
     ERRORS_CONTAINER_ID: 'errors_container',
     TABLE_CONTAINER_ID: 'table',
+    SURNAME_COUNTER_ID: 'surnameCounter',
+    EMAIL_COUNTER_ID: 'emailCounter',
+    SORT_SELECT_ID: 'sortBy',
     init() {
         this.handle();
+        this.hiddenFieldHandler();
+        this.getList();
+        this.getCounters();
+        this.handleTableOrder();
     },
     handle() {
         $('#form').on('submit', (e) => {
             e.preventDefault();
             this.sendForm(this.prepareFormToSend(e.target));
         })
-        this.hiddenFieldHandler();
-        this.getData();
+    },
+    handleTableOrder() {
+        $(`#${this.SORT_SELECT_ID}`).on('change', (e) => {
+            FormHandler.getList(e.target.value);
+        })
     },
     validation() {
         // to do, now is only on server side
@@ -45,15 +55,28 @@ const FormHandler =
     checkRadioToShowHidenField() {
         return $(`[name=${this.HIDDEN_FIELD_TRIGGER}]:checked`).val() === this.HIDDEN_FIELD_TRIGGER_VALUE;
     },
-    getData() {
+    getCounters() {
         $.ajax({
             type: "GET",
-            url: this.FORM_URL + '?getData',
+            url: this.FORM_URL + '?getCounters',
             dataType: "json",
             encode: true,
           }).done(function (data) {
             if (data) {
-                FormHandler.fillTable(data);
+                FormHandler.fillCounters(data);
+            }
+          });
+    },
+    getList(sortBy = null) {
+        const url = sortBy ? `getList=${sortBy}` : 'getList'
+        $.ajax({
+            type: "GET",
+            url: this.FORM_URL + '?' + url,
+            dataType: "json",
+            encode: true,
+          }).done(function (data) {
+            if (data) {
+                FormHandler.fillTable(data, !!sortBy);
             }
           });
     },
@@ -65,7 +88,7 @@ const FormHandler =
             dataType: "json",
             encode: true,
           }).done(function (data) {
-            
+
             if (data !== 201) {
                 FormHandler.showErrors(data);
             } else {
@@ -104,8 +127,13 @@ const FormHandler =
 
         $container.append(errorsMessage);
     },
-    fillTable(data) {
+    fillTable(data, clearTable = false) {
         const $container = $(`#${this.TABLE_CONTAINER_ID}`);
+
+        if (clearTable) {
+            $container.find('tbody').empty();
+        }
+
         let html = '';
 
         data.forEach((row, index) => {
@@ -125,6 +153,16 @@ const FormHandler =
         });
 
         $container.find('tbody').append(html);
+    },
+    fillCounters(data) {
+        const $surnameCounter = $(`#${this.SURNAME_COUNTER_ID}`);
+        const $emailCounter = $(`#${this.EMAIL_COUNTER_ID}`);
+
+        $surnameCounter.empty();
+        $emailCounter.empty();
+
+        $surnameCounter.append(data.surnameCounter);
+        $emailCounter.append(data.emailCounter);
     }
 }
 

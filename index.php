@@ -4,6 +4,7 @@ use App\DTO\FormData;
 use App\Service\Form\Form;
 use App\Service\Database\DatabaseConnection;
 use App\Validator\FormValidator;
+use App\Validator\OrderTableValidator;
 
 header('Access-Control-Allow-Origin: *');
 
@@ -14,15 +15,20 @@ $dotenv->load();
 
 $formHandler = new Form( DatabaseConnection::getConnection());
 
-if (isset($_GET['getData'])) {
-    echo $formHandler->getData();
+if (isset($_GET['getList'])) {
+    echo $formHandler->getList(
+        OrderTableValidator::validate($_GET['getList']) ? $_GET['getList'] : null
+    );
+}
+
+if (isset($_GET['getCounters'])) {
+    echo $formHandler->counter();
 }
 
 if (isset($_POST) && count($_POST) > 0) {
         $formValidator = FormValidator::validate($_POST);
 
         if ($formValidator === true) {
-            $formHandler = new Form( DatabaseConnection::getConnection());
             $formHandler->saveForm(new FormData(
                 $_POST['name'],
                 $_POST['surname'],

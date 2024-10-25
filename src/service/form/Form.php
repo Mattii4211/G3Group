@@ -37,28 +37,38 @@ final class Form implements FormInterface
        
         return isset($e) ? false : true;
     }
-    public function counter(): string
+    public function counter($surname = 'kowalski', $email = 'gmail.com'): string
     {
         $sql = "SELECT 
                     SUM(
-                        IF(`surname` = :surname, 1, 0)
+                        IF(`surname` = '$surname', 1, 0)
                     ) AS surnameCounter,
                     SUM(
-                        IF(`email` LIKE '%@:email', 1, 0)
+                        IF(`email` LIKE '%@$email', 1, 0)
                     ) AS emailCounter
                 FROM `zadanie`";
-        $query = $this->connection->prepare($sql);
-        $query->bindValue(':surname', 'Kowalski', PDO::PARAM_STR);
-        $query->bindValue(':email', '@gmail.com', PDO::PARAM_STR);
-        $data = $query->fetchAll();
+
+        try {
+            $query = $this->connection->prepare($sql);
+            $query->execute();
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+    
+        } catch (Exception $e) {
+            $data = [];
+        }
 
         return json_encode($data);
     }
 
-    public function getData(): string
+    public function getList(string $orderBy = null): string
     {
         $sql = "SELECT name, surname, email, phone, client_no, account_number, choose, agreement1, agreement2, agreement3
         FROM `zadanie`";
+
+        if ($orderBy) {
+            $sql .= "ORDER BY $orderBy DESC";
+        }
+
         try {
             $query = $this->connection->prepare($sql);
             $query->execute();

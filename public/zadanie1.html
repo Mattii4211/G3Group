@@ -119,15 +119,21 @@
         </div>
         <div class="col-md-6 text-center">
             <b>Liczba rekordów dla nazwiska Kowalski</b>
-            <div>X</div>
+            <div id="surnameCounter">X</div>
         </div>
         <div class="col-md-6 text-center">
             <b>Liczba rekordów dla emaila w domenie gmail.com</b>
-            <div>Y</div>
+            <div id="emailCounter">Y</div>
         </div>
     </div>
 </div>
 <div>
+    <select id="sortBy">
+        <option value="">Wybierz po czym sortować</option>
+        <option value="name">Imię</option>
+        <option value="surname">Nazwisko</option>
+        <option value="email">Email</option>
+    </select>
     <table id="table" class="table table-condensed">
         <thead>
             <tr>
