@@ -65,10 +65,16 @@ const FormHandler =
             dataType: "json",
             encode: true,
           }).done(function (data) {
-            if (data) {
+            
+            if (data !== 201) {
                 FormHandler.showErrors(data);
             } else {
                 $(`#${this.ERRORS_CONTAINER_ID}`).empty();
+                const dataToFill = formData;
+                dataToFill.client_no = formData.clientNumber;
+                dataToFill.account_number = formData.account;
+                
+                FormHandler.fillTable([dataToFill]);
                 alert('Successfuly save data')
             }
           });

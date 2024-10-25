@@ -35,6 +35,8 @@ if (isset($_POST) && count($_POST) > 0) {
                 $_POST['phone'] ?? null,
                 $_POST['account'] ?? null,        
             ));
+
+            echo json_encode(201);
         } else {
             echo json_encode($formValidator);
         }
