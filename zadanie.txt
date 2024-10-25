@@ -1,0 +1,18 @@
+Na podstawie otrzymanych materiałów rozbuduj/uzupełnij/popraw kod, aby umożliwiał zapisywanie danych z formularza do bazy danych. Kod PHP twórz bez użycia frameworków. 
+Uwzględnij poniższe wytyczne:
+
+1. Pole account wymagane wyłącznie przy zaznaczeniu Wybór 1, dozwolne tylko polskie numery kont bankowych.
+2. Checkbox Zgoda 1 jest opcjonalna, pozostałe pola są wymagane.
+3. Numer klienta ma wymaganą określoną strukturę: 000DDD-WWWWW, gdzie D to cyfra, W to dowolna wielka litera (bez znaków diaktrycznych).
+3. Wymagana jest backendowa sanityzacja oraz walidacja danych. 
+4. Skorzystaj z dołączonego kodu SQL, w razie potrzeby zmodyfikuj.
+5. Do zestawienia połączenia z bazą danych użyj fikcyjnych danych:
+adres serwera: localhost
+nazwa bazy danych: zadanie
+użytkownik: zadanie_user
+hasło: 123haslo456
+port: 3307
+6. Dodaj obsługę błędów wynikających m.in. z sanityzacji i walidacji.
+7. Dodaj dynamiczne wyświetlanie informacji o błędach/o poprawnym zapisaniu danych w miejsce formularza, skorzystaj z jQuery.
+8. Stwórz kod umożliwiający wyświetlanie zgromadzonych danych w prostej tabeli, z możliwością ich sortowania według 3 dowolnych kolumn za pomocą parametru $_GET lub za pomocą AJAX.
+9. Dodaj wyświetlanie licznika rekordów dla filtrowania po określonym nazwisku oraz po domenie adresu email.

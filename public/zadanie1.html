@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<div class="container">
+    <div id="errors_container"></div>
+    <form id="form" method="post">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3>Formularz</h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Imię</label>
+                        <input type="text" id="name" name="name" maxlength="30" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="surname">Nazwisko</label>
+                        <input type="text" id="surname" name="surname" maxlength="40" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Adres e-mail</label>
+                        <input type="email" id="email" name="email" maxlentgh="80" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone_optional">Numer telefonu komórkowego</label>
+                        <input type="text" id="phone" name="phone" maxlength="9" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="code">Numer klienta</label>
+                        <input 
+                            type="text" 
+                            id="client_no" 
+                            name="clientNumber" 
+                            maxlength="12" 
+                            required 
+                            pattern="000[0-9]{3}-[A-Z]{5}"
+                            placeholder="Format: 000123-AZJKI"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <label class="customcheck">
+                            <input type="radio" name="choose" value="1" required>
+                            Wybór 1
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label class="customcheck">
+                            <input type="radio" name="choose" value="2" required>
+                            Wybór 2
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="hiddenField" class="row hide">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="account">Numer konta</label>
+                        <input 
+                            type="text" 
+                            id="account" 
+                            name="account" 
+                            maxlength="28" 
+                            pattern="PL[0-9]{26}"
+                            placeholder="Format: PL61109010140000071219812874"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <label class="customcheck">
+                        <input type="checkbox" id="agreement1" name="agreement1" required>
+                        Oświadczenie 1
+                    </label>
+                </div>
+                <div>
+                    <label class="customcheck">
+                        <input type="checkbox" id="agreement2" name="agreement2" required>
+                        Oświadczenie 2
+                    </label>
+                </div>
+                <div>
+                    <label class="customcheck">
+                        <input type="checkbox" id="agreement3" name="agreement3">
+                        Zgoda 1 (opcjonalna)
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="submit">Wyślij</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <hr />
+            <h3>Liczniki</h3>
+        </div>
+        <div class="col-md-6 text-center">
+            <b>Liczba rekordów dla nazwiska Kowalski</b>
+            <div>X</div>
+        </div>
+        <div class="col-md-6 text-center">
+            <b>Liczba rekordów dla emaila w domenie gmail.com</b>
+            <div>Y</div>
+        </div>
+    </div>
+</div>
+<div>
+    <table id="table" class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Client number</th>
+                <th>Account number</th>
+                <th>Choose</th>
+                <th>Agreement1</th>
+                <th>Agreement2</th>
+                <th>Agreement3</th>
+              </tr>
+        </thead>
+        <tbody>
+        <tr>
+        </tr>
+        </tbody>
+        </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<script src="..\assets\js\script.js"></script>
