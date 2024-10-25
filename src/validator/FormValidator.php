@@ -63,7 +63,7 @@ final class FormValidator
         return true;
     }
 
-    private function validateClientNumber($clientNumber): bool
+    private function validateClientNumber(string $clientNumber): bool
     {
         if (!preg_match(self::CLIENT_NUMBER_REGEX, $clientNumber)) {
             throw new Exception(message: 'Incorrect value! ' . $clientNumber);
@@ -72,7 +72,7 @@ final class FormValidator
         return true;
     }
     
-    private function validateAccount($accountNumber): bool
+    private function validateAccount(string $accountNumber): bool
     {
         if (!preg_match(self::POLISH_IBAN_REGEX, $accountNumber)) {
             throw new Exception(message: 'Incorrect value! ' . $accountNumber);
@@ -81,7 +81,7 @@ final class FormValidator
         return true;
     }
 
-    private function validateChoose($choose): bool
+    private function validateChoose(int $choose): bool
     {
         if (!in_array($choose, self::CHOOSE_CORRECT_VALUES)) {
             throw new Exception(message: 'Incorrect value! ' . $choose);
@@ -89,14 +89,14 @@ final class FormValidator
         return true;
     }
 
-    private function validateAgreement1($agreement1): bool
+    private function validateAgreement1(int $agreement1): bool
     {
         if (!in_array($agreement1, self::TRUE_FALSE_VALUES)) {
             throw new Exception(message: 'Incorrect value! ' . $agreement1);
         }
         return true;
     }
-    private function validateAgreement2($agreement2): bool
+    private function validateAgreement2(int $agreement2): bool
     {
         if (!in_array( $agreement2, self::TRUE_FALSE_VALUES)) {
             throw new Exception(message: 'Incorrect value! ' . $agreement2);
@@ -104,7 +104,7 @@ final class FormValidator
         return true;
     }
 
-    private function validateAgreement3($agreement3): bool
+    private function validateAgreement3(int $agreement3): bool
     {
         if (!in_array( $agreement3, self::TRUE_FALSE_VALUES)) {
             throw new Exception(message: 'Incorrect value! ' . $agreement3);
@@ -112,7 +112,7 @@ final class FormValidator
         return true;
     }
 
-    private function validatePhone($phone): bool
+    private function validatePhone(string $phone): bool
     {
         if (!preg_match(self::PHONE_NUMBER_REGEX, $phone)) {
             throw new Exception(message: 'Incorrect value! ' . $phone);

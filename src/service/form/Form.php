@@ -37,7 +37,7 @@ final class Form implements FormInterface
        
         return isset($e) ? false : true;
     }
-    public function counter($surname = 'kowalski', $email = 'gmail.com'): string
+    public function counter(string $surname, string $email): string
     {
         $sql = "SELECT 
                     SUM(
@@ -57,7 +57,7 @@ final class Form implements FormInterface
             $data = [];
         }
 
-        return json_encode($data);
+        return strval(json_encode($data));
     }
 
     public function getList(string $orderBy = null): string
@@ -77,6 +77,6 @@ final class Form implements FormInterface
             $data = [];
         }
 
-        return json_encode($data);
+        return strval(json_encode($data));
     }
 }

@@ -8,5 +8,5 @@ use App\DTO\FormData;
 interface FormInterface 
 {
     public function saveForm(FormData $formData): bool;
-    public function counter(): string;
+    public function counter(string $surname, string $email): string;
 }

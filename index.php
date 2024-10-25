@@ -22,7 +22,7 @@ if (isset($_GET['getList'])) {
 }
 
 if (isset($_GET['getCounters'])) {
-    echo $formHandler->counter();
+    echo $formHandler->counter('kowalski', 'gmail');
 }
 
 if (isset($_POST) && count($_POST) > 0) {
