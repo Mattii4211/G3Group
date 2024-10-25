@@ -98,6 +98,7 @@ const FormHandler =
                 dataToFill.account_number = formData.account;
                 
                 FormHandler.fillTable([dataToFill]);
+                FormHandler.getCounters();
                 alert('Successfuly save data')
             }
           });
