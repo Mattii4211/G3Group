@@ -38,7 +38,7 @@ final class FormValidator
         $maxLength = self::MAX_NAME_LENGTH;
         $pattern = "/\A[A-Za-z]{2,$maxLength}\z/";
         if (!(strlen($name) <= $maxLength && preg_match($pattern, $name))) {
-            throw new Exception(message: 'Incorect value! ' . $name);
+            throw new Exception(message: 'Incorrect value! ' . $name);
         }
         return true;
     }
@@ -48,7 +48,7 @@ final class FormValidator
         $maxLength = self::MAX_SURNAME_LENGTH;
         $pattern = "/\A[A-Za-z]{2,$maxLength}\z/";
         if (!(strlen($surname) <= $maxLength && preg_match($pattern, $surname))) {
-            throw new Exception(message: 'Incorect value! ' . $surname);
+            throw new Exception(message: 'Incorrect value! ' . $surname);
         }
 
         return true;
@@ -57,7 +57,7 @@ final class FormValidator
     private function validateEmail(string $email): bool
     {
         if (!(strlen($email) <= self::MAX_EMAIL_LENGTH && filter_var($email, FILTER_VALIDATE_EMAIL))) {
-            throw new Exception(message: 'Incorect value! ' . $email);
+            throw new Exception(message: 'Incorrect value! ' . $email);
         }
 
         return true;
@@ -66,7 +66,7 @@ final class FormValidator
     private function validateClientNumber($clientNumber): bool
     {
         if (!preg_match(self::CLIENT_NUMBER_REGEX, $clientNumber)) {
-            throw new Exception(message: 'Incorect value! ' . $clientNumber);
+            throw new Exception(message: 'Incorrect value! ' . $clientNumber);
         }
 
         return true;
@@ -75,7 +75,7 @@ final class FormValidator
     private function validateAccount($accountNumber): bool
     {
         if (!preg_match(self::POLISH_IBAN_REGEX, $accountNumber)) {
-            throw new Exception(message: 'Incorect value! ' . $accountNumber);
+            throw new Exception(message: 'Incorrect value! ' . $accountNumber);
         }
 
         return true;
@@ -84,7 +84,7 @@ final class FormValidator
     private function validateChoose($choose): bool
     {
         if (!in_array($choose, self::CHOOSE_CORRECT_VALUES)) {
-            throw new Exception(message: 'Incorect value! ' . $choose);
+            throw new Exception(message: 'Incorrect value! ' . $choose);
         }
         return true;
     }
@@ -92,14 +92,14 @@ final class FormValidator
     private function validateAgreement1($agreement1): bool
     {
         if (!in_array($agreement1, self::TRUE_FALSE_VALUES)) {
-            throw new Exception(message: 'Incorect value! ' . $agreement1);
+            throw new Exception(message: 'Incorrect value! ' . $agreement1);
         }
         return true;
     }
     private function validateAgreement2($agreement2): bool
     {
         if (!in_array( $agreement2, self::TRUE_FALSE_VALUES)) {
-            throw new Exception(message: 'Incorect value! ' . $agreement2);
+            throw new Exception(message: 'Incorrect value! ' . $agreement2);
         }
         return true;
     }
@@ -107,7 +107,7 @@ final class FormValidator
     private function validateAgreement3($agreement3): bool
     {
         if (!in_array( $agreement3, self::TRUE_FALSE_VALUES)) {
-            throw new Exception(message: 'Incorect value! ' . $agreement3);
+            throw new Exception(message: 'Incorrect value! ' . $agreement3);
         }
         return true;
     }
@@ -115,7 +115,7 @@ final class FormValidator
     private function validatePhone($phone): bool
     {
         if (!preg_match(self::PHONE_NUMBER_REGEX, $phone)) {
-            throw new Exception(message: 'Incorect value! ' . $phone);
+            throw new Exception(message: 'Incorrect value! ' . $phone);
         }
 
         return true;
