@@ -13,6 +13,8 @@ const FormHandler =
     SURNAME_COUNTER_ID: 'surnameCounter',
     EMAIL_COUNTER_ID: 'emailCounter',
     SORT_SELECT_ID: 'sortBy',
+    SORT_HOW_SELECT_ID: 'sortHow',
+    ORIGINAL_ORDER_LIST: {},
     init() {
         this.handle();
         this.hiddenFieldHandler();
@@ -29,7 +31,22 @@ const FormHandler =
     handleTableOrder() {
         $(`#${this.SORT_SELECT_ID}`).on('change', (e) => {
             FormHandler.getList(e.target.value);
-        })
+        });
+
+        $(`#${this.SORT_HOW_SELECT_ID}`).on('change', (e) => {
+            let list = [];
+            switch (e.target.value) {
+                case 'asc':
+                    list = FormHandler.ORIGINAL_ORDER_LIST;
+                    break;
+                case 'desc':
+                    for (let i = FormHandler.ORIGINAL_ORDER_LIST.length - 1; i >= 0; i--) {
+                        list.push(FormHandler.ORIGINAL_ORDER_LIST[i]);
+                    }
+                    break;
+            }
+            FormHandler.fillTable(list, true);
+        });
     },
     validation() {
         // to do, now is only on server side
@@ -77,6 +94,8 @@ const FormHandler =
           }).done(function (data) {
             if (data) {
                 FormHandler.fillTable(data, !!sortBy);
+                FormHandler.ORIGINAL_ORDER_LIST = data;
+                 $(`#${FormHandler.SORT_HOW_SELECT_ID}`).val('asc');
             }
           });
     },

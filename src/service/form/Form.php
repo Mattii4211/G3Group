@@ -66,7 +66,7 @@ final class Form implements FormInterface
         FROM `zadanie`";
 
         if ($orderBy) {
-            $sql .= "ORDER BY $orderBy DESC";
+            $sql .= "ORDER BY $orderBy ASC";
         }
 
         try {

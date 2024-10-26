@@ -128,12 +128,23 @@
     </div>
 </div>
 <div>
-    <select id="sortBy">
-        <option value="">Wybierz po czym sortować</option>
-        <option value="name">Imię</option>
-        <option value="surname">Nazwisko</option>
-        <option value="email">Email</option>
-    </select>
+    <div class="row">
+        <div class="col-md-3">
+            <select id="sortBy" class="form-control">
+                <option value="">Wybierz po czym sortować</option>
+                <option value="name">Imię</option>
+                <option value="surname">Nazwisko</option>
+                <option value="email">Email</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select id="sortHow" class="form-control">
+                <option value="">Wybierz jak sortować</option>
+                <option value="asc">Rosnąco</option>
+                <option value="desc">Malejąco</option>
+            </select>
+        </div>
+    </div>
     <table id="table" class="table table-condensed">
         <thead>
             <tr>
